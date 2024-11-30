@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block css_files%} 
+    <link rel = "stylesheet" href = "{% static 'account/css/style.css' %}">
+{%endblock%}
+
+{%block title %} 
+    Register
+{%endblock%}
+
+{% block content%}
+
+
+    <div class="container mt-3">
+        <div class="col">
+            <h1>Register</h1>    
+            <hr>
+            <form method="POST">
+
+                {% csrf_token %}
+                
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+
+                    
+                {% endif %}
+                    
+                <div class="mb-3">
+                    <label for="username" class= "form-lable">Username</label>
+                    <input type="text" class="form-control" name="username" value="{{username}}">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class= "form-lable">E-mail</label>
+                    <input type="email" class="form-control" name="email" value="{{email}}">
+                </div>
+                <div class="row mb-3">
+                    <div class = "col"> 
+                        <label for="firstname" class= "form-lable">First Name</label>
+                        <input type="text" class="form-control" name="firstname" value="{{firstname}}">
+                    </div>
+                    <div class = "col"> 
+                        <label for="lastname" class= "form-lable">Last Name</label>
+                        <input type="text" class="form-control" name="lastname" value="{{lastname}}">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="password" class= "form-lable">Password</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                    <div class="col">
+                        <label for="repassword" class= "form-lable">Re-Password</label>
+                        <input type="password" class="form-control" name="repassword">
+                    </div>
+                </div>
+                <div class="mb-3"></div>
+                <input type="submit" value = "register" class = "btn btn-primary">
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block js_files%} 
+<script src="{% static 'account/js/scripte.js' %}"></script>
+{% endblock%}
+
